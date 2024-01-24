@@ -1,0 +1,49 @@
+<View>
+  <Image name="image" value="$image_url"/>
+  <Header value="For the following VAEL '$predicted_vael', answer the following questions:"/>
+
+    <Header name="q1" value="Q1: Object Visibility (select which one is applicable)"/>
+    <Text name='txt1' value="VAEL: $predicted_vael"/>
+    <Text name="txt-2" value="CAPTION: $caption"/>
+    <Choices name="object_visibility" toName="image" choice="single">
+    	<Choice alias="option1" value="Option 1: Visible - 75% or more of object is visible"/>
+    	<Choice alias="option2" value="Option 2: Partially Visible - less than 75% of object is visible"/>
+    	<Choice alias="option3" value="Option 3: Completely Missing"/>
+     	<Choice alias="option4" value="Option 4: Not clear what fraction of the object is visible"/> 
+    </Choices>
+  <Header name="q2" value="Q2: If Option 3 [Object completely missing] was selected in Q1 (check all that apply) "/>
+    <Text name='txt2' value="VAEL: $predicted_vael"/>
+    <Text name="txt-3" value="CAPTION: $caption"/>
+    <Choices name="completely_missing_type" toName="image" choice="multiple">
+    	<Choice alias="option1" value="Image contains co-occurring scene/objects/entities with extracted label (boat and water, train and train tracks, bus and bus stop) "/>
+    	<Choice alias="option2" value="Semantically similar object is present in image instead (e.g. extracted label is truck but there is a car present in the image)"/>
+    </Choices>
+    <Header name="q3" value="Q3: Object Appearance Quality - Defects (check all that apply) "/>
+      <Text name='txt3' value="VAEL: $predicted_vael"/>
+      <Text name="txt-4" value="CAPTION: $caption"/>
+    <Choices name="object_appearance_quality" toName="image" choice="multiple">
+    	<Choice alias="option1" value="Occlusion (for example: inside a vehicle, or object blocked by another entity in an image)"/>
+    	<Choice alias="option2" value="Key Parts are missing from image (like head of an animal)"/>
+    	<Choice alias="option3" value="Atypical appearance (clip art, watermark, knitted animal)"/>
+    	<Choice alias="option4" value="Other"/>
+    </Choices>
+    <TextArea placeholder="If other is selected above, please specify here" name="other_ta1" toName="image"></TextArea>
+
+    <Header name="q4" value="Q4: Check if the VAEL could be inferred to be visually absent due to proximity or membership in any of these linguistic elements (check one): "/>
+    <Text name='txt4' value="VAEL: $predicted_vael"/>
+    <Text name="txt-1" value="CAPTION: $caption"/>
+    <Choices name="linguistic_cue" toName="image" choice="multiple">
+    	<Choice alias="option1" value="Describing the Past"/>
+        <Choice alias="option9" value="Text discusses content/events related to but beyond the image"/>
+    	<Choice alias="option2" value="Non-Literal (metaphor, simile, etc)"/>
+    	<Choice alias="option3" value="Noun Modifier: Noun is modifying other noun (VAEL can be either noun)"/>
+    	<Choice alias="option4" value="Prepositional Phrase (e.g. 'on a boat') "/>
+        <Choice alias="option6" value="Different Word Sense"/>
+        <Choice alias="option7" value="Named Entity"/>
+        <Choice alias="option8" value="Caption transcribes text in image"/>
+        <Choice alias="option5" value="Other"/> 
+    </Choices>
+    <TextArea placeholder="If other is selected above, please specify here" name="other_ta2" toName="image"></TextArea>
+
+
+</View>
